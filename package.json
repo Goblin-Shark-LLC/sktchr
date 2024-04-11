@@ -1,0 +1,51 @@
+{
+  "name": "sktchr",
+  "version": "1.0.0",
+  "description": "A drawing based social media app",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "test",
+    "webpack": "webpack serve --open",
+    "server": "nodemon server/server.js",
+    "dev": "concurrently \"npm run webpack\" \"npm run server\"",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goblin-Shark-LLC/sktchr.git"
+  },
+  "author": "Goblin Sharks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Goblin-Shark-LLC/sktchr/issues"
+  },
+  "homepage": "https://github.com/Goblin-Shark-LLC/sktchr#readme",
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-react": "^7.24.1",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^7.1.1",
+    "nodemon": "^3.1.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^8.2.2",
+    "cookie-parser": "^1.4.6",
+    "cross-env": "^7.0.3",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.1",
+    "node": "^18.20.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "redux": "^5.0.1"
+  }
+}
