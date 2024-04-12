@@ -1,0 +1,20 @@
+
+--for user schema
+_id:
+username (google ID):
+email/name:
+posts: [array of post ids];
+created_at: timestamp
+updated_at: timestamp
+
+post schema:
+_id:
+user_id:
+data:
+meta: {
+    file_name:
+    file_type:
+    file_size:
+    created_at:
+    updated_at:
+}
