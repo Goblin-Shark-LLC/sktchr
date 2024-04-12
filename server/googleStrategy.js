@@ -1,14 +1,14 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
-const GOOGLE_CLIENT_ID = '944672709421-ghs7dkefluapq2us5b5pkmh5ackjvegs.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
+require('dotenv').config();
+
 const callbackURL = "http://localhost:8080/protected"
 
 passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: callbackURL,
+    clientID: process.env.G_CLIENT_ID,
+    clientSecret: process.env.G_CLIENT_SECRET,
+    callbackURL: "http://localhost:8080/auth/google/check",
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
