@@ -3,8 +3,6 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 require('dotenv').config();
 
-const callbackURL = "http://localhost:8080/protected"
-
 passport.use(new GoogleStrategy({
     clientID: process.env.G_CLIENT_ID,
     clientSecret: process.env.G_CLIENT_SECRET,
@@ -12,9 +10,10 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //   return done(err, user);
-    // });
+    //enable instead of return below to connect to DB
+      // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      //   return done(err, user);
+      // });
     return (done(null, profile));
   }
 ));

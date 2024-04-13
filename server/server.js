@@ -2,13 +2,20 @@ const express = require('express');
 const path = require('path');
 
 //auth requirements
+const session  = require('express-session');
 const passport = require('passport');
 require('./googleStrategy');
+
+//middleware requirements
+const loginController = require('./loginController/login');
 
 require('dotenv').config();
 
 const app = express();
 const PORT = 3000;
+app.use(session({ secret: process.env.G_SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.json());
 
@@ -29,7 +36,7 @@ app.get('/auth/google',
 );
 
 //auth success check, redirects to feed on succes, and error page on fail
-app.get('auth/google/check',
+app.get('/auth/google/check',
     passport.authenticate('google', {
         successRedirect: '/protected',
         failureRedirect: '/auth/google/failure'
@@ -42,8 +49,20 @@ app.get('/auth/google/failure', (req, res) => {
 });
 
 //update to "feed" once done testing auth
-app.get('/protected', (req,res) => {
-    res.send('protected page accessed')
+app.get('/protected', loginController.isLoggedIn, (req,res) => {
+    res.send(`protected page accessed. Hello ${req.user.displayName}`);
+});
+
+//logout endpoint - switch to post req once connected to react button
+app.get('/logout', function(req, res, next){
+    req.logout(function(err) {
+        if (err) { return next({
+            message: 'An error occurred during logout process.',
+            error: err
+            });
+        }
+      res.redirect('/');
+    });
 });
 
 //404 error handling
