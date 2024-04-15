@@ -22,13 +22,7 @@ export const AddPostForm = () => {
     // & update the store
     const onSavePostClicked = () => {
         if (title && content) {
-            dispatch(
-                postAdded({
-                    id: nanoid(),
-                    title,
-                    content
-                })
-            )
+            dispatch(postAdded(title, content));
             // reset input fields to empty strings
             setTitle('');
             setContent('');
