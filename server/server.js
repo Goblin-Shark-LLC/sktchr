@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../build')));
 
 //default endpoint
-app.get('/', (req, res) => {
+app.use('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../build/bundle.js'))
 });
 
@@ -66,7 +66,7 @@ app.get('/logout', function(req, res, next){
 });
 
 //404 error handling
-app.use((req, res) => res.status(404).send({message:'404ed'}));
+app.use('*', (req, res) => res.status(404).send({message:'404ed'}));
 
 //global error handling
 app.use((err, req, res, next) => {
