@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 
+
 //auth requirements
 const session  = require('express-session');
 const passport = require('passport');
@@ -8,6 +9,7 @@ require('./googleStrategy');
 
 //middleware requirements
 const loginController = require('./loginController/login');
+const userController = require('./controllers')
 
 require('dotenv').config();
 
@@ -25,6 +27,11 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../build/bundle.js'))
 });
+
+// handle user signup
+// app.post('/signup', userController.createUser, (req, res) => {
+//     res.status(200).redirect('/');
+// });
 
 app.get('/login', (req, res) => {
     res.status(200).send('<a href="/auth/google">Authenticate with Google</a>');
@@ -65,8 +72,14 @@ app.get('/logout', function(req, res, next){
     });
 });
 
+app.get('/getUser', (req, res) => {
+    if(req.user){
+        res.status(200).send(req.user);
+    }
+});
+
 //404 error handling
-app.use((req, res) => res.status(404).send({message:'404ed'}));
+app.use('*', (req, res) => res.status(404).send({message:'404ed'}));
 
 //global error handling
 app.use((err, req, res, next) => {
