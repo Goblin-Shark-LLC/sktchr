@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { PostAuthor } from './PostAuthor.jsx';
+import { ReactionButtons } from './ReactionButtons.jsx';
 // useParams uses the route's dynamic parameters (defined here in PostsList when clicking the button)
 // in this case it will be post.id
 import { useParams } from 'react-router-dom';
@@ -32,7 +34,9 @@ export const SinglePostPage = () => {
         <section>
             <article className="post">
                 <h2>{post.title}</h2>
+                <PostAuthor userId={post.user} />
                 <p className="post-content">{post.content}</p>
+                <ReactionButtons post={post} />
                 <Link to={`/editPost/${post.id}`} className="button">
                 Edit Post</Link>
             </article>
