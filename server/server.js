@@ -37,12 +37,12 @@ app.get('/login', (req, res) => {
     res.status(200).send('<a href="/auth/google">Authenticate with Google</a>');
 });
 
-//gogle auth redirect
+//google auth redirect
 app.get('/auth/google', 
     passport.authenticate('google', {scope: ['email', 'profile']})
 );
 
-//auth success check, redirects to feed on succes, and error page on fail
+//auth success check, redirects to feed on success, and error page on fail
 app.get('/auth/google/check',
     passport.authenticate('google', {
         successRedirect: '/protected',
