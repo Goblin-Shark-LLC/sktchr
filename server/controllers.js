@@ -2,21 +2,26 @@
 const mongoose = require('mongoose');
 const { User, Post } = require('./models');
 
+const userController = {};
 
-const createUser = (req, res) => {
+userController.createUser = async (req, res, next) => {
+    console.log("req.body ===> ", req.body);
     const { username, email } = req.body;
     const newUser = new User({ username, email });
+    console.log("new user ===> ", newUser);
     newUser.save((err, user) => {
         if (err) {
-            res.status(500).send
+            res.status(500).send({ error: 'Error creating user' })
             return;
         }
         res.status(201).send(user);
     }
     )
+    return next();
 }
 
 // test case for createUser
 
 
-module.exports = {createUser, createPost, getUser, getPost, getAllUsers, getAllPosts, updateUser, updatePost, deleteUser, deletePost};
+module.exports = userController;
+    //createPost, getUser, getPost, getAllUsers, getAllPosts, updateUser, updatePost, deleteUser, deletePost};
