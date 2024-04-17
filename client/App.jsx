@@ -38,7 +38,9 @@ function App() {
         async function fetchUser() {
             setUserObj(await fetch('/getUser'));
         }
-        fetchUser();
+        if(cookiePresent){
+            fetchUser();
+        }
     },[cookiePresent]);
 
     return (
