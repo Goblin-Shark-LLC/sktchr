@@ -16,6 +16,10 @@ export const PostsList = () => {
         return state.posts;
     });
 
+    // here we want to do a fetch request with specific userID and posts, createdAt/maybe updatedAt
+    
+
+
     // sort posts in reverse chronological order by datetime string
     const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
 

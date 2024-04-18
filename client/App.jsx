@@ -43,7 +43,7 @@ function App() {
 
     return (
     <Router>
-        <Navbar />
+        <Navbar isLoggedIn={cookiePresent}/>
         <div className="App">
             <Routes>
                 {cookiePresent ? (
