@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const findOrCreate = require('mongoose-findorcreate');
 mongoose.plugin(require('mongoose-findorcreate'))
 
 require('dotenv').config();
@@ -17,7 +16,6 @@ mongoose.connect(uri)
   });
 
 const userSchema = new Schema({
-  // username: { type: String, unique: true, required: true},
   email: { type: String, unique: true },
   posts: Array,
   createdAt: { type: Date, default: Date.now },
@@ -31,8 +29,6 @@ const postSchema = new Schema({
   url: { type: String, required: true },
 });
 
-// userSchema.plugin(findOrCreate);
-// postSchema.plugin(findOrCreate);
 const User = mongoose.model('User', userSchema);
 const Post = mongoose.model('Post', postSchema);
 

@@ -11,8 +11,6 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    // enable instead of return below to connect to DB
-    // console.log(`googleId: ${profile.given_name}`);
       console.log(`profile: ${profile.email}`);
       models.User.findOrCreate({
       email: profile.email,
@@ -24,12 +22,7 @@ passport.use(new GoogleStrategy({
       })
       return done(null, profile);
       }
-      // return done(null, profile);
-  // }
 ));
-
-// return (done(null, profile));
-
 
 passport.serializeUser(function(user, done) {
     done(null, user);
