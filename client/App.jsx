@@ -18,20 +18,15 @@ function App() {
     // I think this could maybe be stored in state, renders can be conditional on that?
     // routing will be dependent on this
     useEffect(() => {
-        let cookie = Cookies.get('connect.sid');
+        let cookie = Cookies.get('isLoggedIn');
         console.log(`cookie: ${JSON.stringify(cookie)}`);
-        if(cookie) {
+        if(cookie === 'true'){
+            console.log('cookie true');
             setCookiePresent(true);
+        } else {
+            console.log('cookie false')
+            setCookiePresent(false);
         }
-
-        // cookie name connect.sid
-        // check for cookie, if truthy runs fetch req to server which returns user object
-        // userObj is updated to user object
-
-        /* need to test this, but this may work to fill in user obj. you'd just need to create a Feed component
-        which checks if userObj is truthy, and returns the feed if true, otherwise returns nothing and does not render
-         */
-
     })
 
     useEffect(() => {
@@ -45,6 +40,7 @@ function App() {
 
     return (
     <Router>
+        {/* <Canvas /> */}
         <Navbar />
         <div className="App">
             <Routes>
