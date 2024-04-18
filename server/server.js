@@ -1,20 +1,23 @@
 const express = require('express');
 const path = require('path');
 
-
-//auth requirements
+// //auth requirements
 const session  = require('express-session');
 const passport = require('passport');
-require('./googleStrategy');
 
-//middleware requirements
+// //middleware requirements
 const loginController = require('./loginController/login');
-const userController = require('./controllers')
+// const userController = require('./controllers')
 
-require('dotenv').config();
+// require('dotenv').config();
 
 const app = express();
 const PORT = 3000;
+
+//router requirements
+const authRouter = require('./routes/authRoutes.js');
+const postsRouter = require('./routes/postsRoutes.js')
+
 app.use(session({ secret: process.env.G_SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -33,49 +36,18 @@ app.get('/', (req, res) => {
 //     res.status(200).redirect('/');
 // });
 
-app.get('/login', (req, res) => {
-    res.status(200).send('<a href="/auth/google">Authenticate with Google</a>');
-});
-
-//google auth redirect
-app.get('/auth/google', 
-    passport.authenticate('google', {scope: ['email', 'profile']})
-);
-
-//auth success check, redirects to feed on success, and error page on fail
-app.get('/auth/google/check',
-    passport.authenticate('google', {
-        successRedirect: '/protected',
-        failureRedirect: '/auth/google/failure'
-    })
-);
-
-//auth failure endpoint
-app.get('/auth/google/failure', (req, res) => {
-    res.send('Unable to authenticate user at this time.')
-});
-
-//update to "feed" once done testing auth
-app.get('/protected', loginController.isLoggedIn, (req,res) => {
-    res.send(`protected page accessed. Hello ${req.user.displayName}`);
-});
-
-//logout endpoint - switch to post req once connected to react button
-app.get('/logout', function(req, res, next){
-    req.logout(function(err) {
-        if (err) { return next({
-            message: 'An error occurred during logout process.',
-            error: err
-            });
-        }
-      res.redirect('/');
-    });
-});
+app.use('/auth', authRouter);
+app.use('/posts', postsRouter);
 
 app.get('/getUser', (req, res) => {
     if(req.user){
         res.status(200).send(req.user);
     }
+});
+
+//Client side file (feed App) needed for insertion after isLoggedIn mw
+app.get('/feed', loginController.isLoggedIn, (req,res) => {
+    res.send(`protected page accessed. Hello ${req.user.displayName}`);
 });
 
 //404 error handling
