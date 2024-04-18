@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const models = require('./models.js');
 
 require('dotenv').config();
 
@@ -10,12 +11,17 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    //enable instead of return below to connect to DB
-      // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      //   return done(err, user);
-      // });
-    return (done(null, profile));
-  }
+      console.log(`profile: ${profile.email}`);
+      models.User.findOrCreate({
+      email: profile.email,
+      posts: ['somedata', 'moredata', 'evenmoredata'],
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      }, function (err, user) {
+        console.log(`error: ${err}`);
+      })
+      return done(null, profile);
+      }
 ));
 
 passport.serializeUser(function(user, done) {
