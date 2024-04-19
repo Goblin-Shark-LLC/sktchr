@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.plugin(require('mongoose-findorcreate'))
 
 require('dotenv').config();
 
@@ -12,7 +11,7 @@ mongoose.connect(uri)
     console.log('Connected to MongoDb');
   })
   .catch((error) => {
-    console.error('Error while connecting to MongoDB.');
+    console.error(`Error while connecting to MongoDB. Error: ${error}`);
   });
 
 const userSchema = new Schema({

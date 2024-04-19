@@ -10,7 +10,6 @@ import App from './App.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
-// root.render(<Canvas/>);
 root.render(
     <React.StrictMode>
         <Provider store={store}>
