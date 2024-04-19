@@ -99,7 +99,10 @@ function Canvas() {
                 // Send the image data to the server using a POST request
                 fetch('/posts/upload', {
                     method: 'POST',
-                    body: dataURL,
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({imgData: dataURL}),
                 })
                 .then(response => {
                     if (response.ok) {

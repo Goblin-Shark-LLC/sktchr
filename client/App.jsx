@@ -8,6 +8,7 @@ import { SinglePostPage } from './features/posts/SinglePostPage.jsx';
 import { EditPostForm } from './features/posts/EditPostForm.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
+import Canvas from './Canvas.jsx';
 
 function App() {
     // on app render, update userObj to null
@@ -16,19 +17,23 @@ function App() {
 
     useEffect(() => {
         let cookie = Cookies.get('isLoggedIn');
-        console.log(`cookie: ${JSON.stringify(cookie)}`);
         if(cookie === 'true'){
-            console.log('cookie true');
             setCookiePresent(true);
         } else {
-            console.log('cookie false')
             setCookiePresent(false);
         }
     })
 
     useEffect(() => {
         async function fetchUser() {
-            setUserObj(await fetch('/getUser'));
+            await fetch('/getUser')
+                .then(response =>  {
+                    if(!response.ok){
+                        console.error('Network response not ok.')
+                    }
+                    return response.json()
+                })
+                .then(user =>setUserObj(user))
         }
         if(cookiePresent){
             fetchUser();

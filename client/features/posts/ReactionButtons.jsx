@@ -8,7 +8,7 @@ const reactionEmoji = {
     heart: '❤️',
   };
 
-  console.log("reactionEmoji ===> ", reactionEmoji);
+//   console.log("reactionEmoji ===> ", reactionEmoji);
 export const ReactionButtons = ({ post }) => {
     const dispatch = useDispatch();
 
