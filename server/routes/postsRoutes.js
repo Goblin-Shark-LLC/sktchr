@@ -2,21 +2,24 @@ const express = require('express');
 const bucket = require('../bucket.js');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const path = require('path')
 
 const router = express.Router();
 let nameGen = 0;
 
+const imagePath = path.join(__dirname, '..', 'imgCache', `image${nameGen}.txt`);
+
 router.post('/upload', async (req, res, next) => {
     try{
-        // console.log(`req:`, req.body);
-    //     fs.writeFile(`imageCache/image${nameGen}.png`, req.body, (err) => {
-    //         if(err){
-    //             console.error(`An error occurred during image upload: ${err}`);
-    //         } else {
-    //             console.log('image write success!');
-    //         }
-    // })
-    // bucket.uploadFile(`image${nameGen}.png`, `./imageCache/image${nameGen}.png`);
+        // console.log(`req:`, req.body.imgData);
+        fs.writeFile(imagePath, req.body.imgData, (err) => {
+            if(err){
+                console.error(`An error occurred during image upload: ${err}`);
+            } else {
+                console.log('image write success!');
+            }
+    })
+    bucket.uploadFile(`image${nameGen}.txt`, imagePath);
     nameGen++;
     return next();
     } catch (err) {

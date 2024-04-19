@@ -42,7 +42,7 @@ function App() {
 
     return (
     <Router>
-        {/* <Canvas /> */}
+        <Canvas />
         <Navbar />
         <div className="App">
             <Routes>
