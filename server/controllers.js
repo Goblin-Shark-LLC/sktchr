@@ -6,8 +6,8 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
     console.log("req.body ===> ", req.body);
-    const { username, email } = req.body;
-    const newUser = new User({ username, email });
+    const { email } = req.body;
+    const newUser = new User({ email });
     console.log("new user ===> ", newUser);
     newUser.save((err, user) => {
         if (err) {
