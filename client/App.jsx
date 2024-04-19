@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Login from './components/Authentication/Login.jsx';
-import Signup from './components/Authentication/Signup.jsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { PostsList } from './features/posts/PostsList.jsx';
-import { AddPostForm } from './features/posts/AddPostForm.jsx';
-import { SinglePostPage } from './features/posts/SinglePostPage.jsx';
-import { EditPostForm } from './features/posts/EditPostForm.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
