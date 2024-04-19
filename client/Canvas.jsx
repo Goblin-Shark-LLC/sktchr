@@ -10,7 +10,7 @@ function Canvas() {
 
     useEffect(() => {
         function updateStageSize() {
-            let container = document.getElementById('container');
+            let container = document.getElementById('canvasContainer');
             let width = container.offsetWidth;
             let height = container.offsetHeight;
             //staging. Renders canvas and renders anything drawn to it, too
@@ -137,15 +137,17 @@ function Canvas() {
     }, [stage]);
     
     return (
-        <>
-            <meta charSet="utf-8" />
+        <section className="canvasSection">
+            <h2>Canvas</h2>
+            <div id="canvasContainer" className="canvasContainer">
+            {/* <meta charSet="utf-8" />
             <title>Konva Free Drawing Demo</title>
             <style
                 dangerouslySetInnerHTML={{
                     __html:
                         "\n      body {\n        margin: 0;\n        padding: 0;\n        overflow: hidden;\n        background-color: #f0f0f0;\n      }\n      #container {\n        border: 1px solid black;\n        width: 50vw;\n        height: 30vh;\n      }\n    "
                 }}
-            />
+            /> */}
             <div>
                 Tool:
                 <select id="tool">
@@ -162,8 +164,10 @@ function Canvas() {
                 <button id="undoButton">Undo</button>
                 <button id="saveButton">Save</button>
             </div>
-            <div id="container" />
-        </>
+            <div id="container" className="canvasContainer" />
+
+            </div>
+        </section>
     );
 };
 

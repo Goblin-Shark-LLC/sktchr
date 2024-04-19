@@ -16,3 +16,52 @@ const usersSlice = createSlice({
 })
 
 export default usersSlice.reducer;
+
+// slices/usersSlice.js
+// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import axios from 'axios';
+
+// // Async thunk to fetch users
+// export const fetchUsers = createAsyncThunk(
+//     'users/fetchUsers',
+//     async () => {
+//         const response = await axios.get('/api/users');
+//         console.log("res in usersSlice ===> ", response);
+//         return response.data;
+//     }
+// );
+
+// const initialState = {
+//     users: [],
+//     currentUser: null,
+//     loading: false,
+//     error: null
+// };
+
+// const usersSlice = createSlice({
+//     name: 'users',
+//     initialState,
+//     reducers: {
+//         setCurrentUser(state, action) {
+//             state.currentUser = action.payload;
+//         }
+//     },
+//     extraReducers: builder => {
+//         builder
+//             .addCase(fetchUsers.pending, state => {
+//                 state.loading = true;
+//                 state.error = null;
+//             })
+//             .addCase(fetchUsers.fulfilled, (state, action) => {
+//                 state.loading = false;
+//                 state.users = action.payload;
+//             })
+//             .addCase(fetchUsers.rejected, (state, action) => {
+//                 state.loading = false;
+//                 state.error = action.error.message;
+//             });
+//     }
+// });
+
+// export const { setCurrentUser } = usersSlice.actions;
+// export default usersSlice.reducer;
