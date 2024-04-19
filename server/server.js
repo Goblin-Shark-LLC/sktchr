@@ -63,12 +63,6 @@ app.get('/feed', loginController.isLoggedIn, loginController.saveUser,
 //     }
 //   });
 
-// post request test
-// app.post('/addPost', (req, res) => {
-//     console.log("we are in add post server side, req ==>", req);
-//     console.log("current user ===> ", req.user);
-//     res.status(200).send();
-// });
 
 //404 error handling
 app.use('*', (req, res) => res.status(404).send({message:'404ed'}));

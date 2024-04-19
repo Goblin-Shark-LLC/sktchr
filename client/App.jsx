@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
-// import UsersList from './features/users/UsersList.jsx'
-// import UserProfile from './features/users/UserProfile.jsx';
+import { PostsList } from './features/posts/PostsList.jsx';
 // import UsersList from './features/users/UsersList.jsx'
 // import UserProfile from './features/users/UserProfile.jsx';
 
