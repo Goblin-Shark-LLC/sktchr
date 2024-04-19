@@ -10,7 +10,7 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-const uploadFile = (fileName, filePath) => {
+const uploadFile = async (fileName, filePath) => {
     const fileContent = fs.readFileSync(filePath);
     console.log('inside uploadFile')
     const params = {
@@ -18,7 +18,9 @@ const uploadFile = (fileName, filePath) => {
         Key: fileName,
         Body: fileContent
     };
-    return s3.upload(params).promise();
+    const data = await s3.upload(params).promise();
+    // console.log('data', data);
+    return data;
 };
 
 

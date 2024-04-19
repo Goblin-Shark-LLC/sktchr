@@ -87,19 +87,19 @@ function Canvas() {
     }, [brushColor, lines]);
 
     useEffect(() => {
-        // function saveHandler() {
-
         function saveHandler() {
             // Check if stage exists
             if (stage) {
                 // Get the image data URL from the stage
                 let dataURL = stage.toDataURL({ mimeType: 'image/png' });
-                console.log('dataURL:', dataURL)
 
                 // Send the image data to the server using a POST request
                 fetch('/posts/upload', {
                     method: 'POST',
-                    body: dataURL,
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({imgData: dataURL}),
                 })
                 .then(response => {
                     if (response.ok) {
@@ -116,17 +116,7 @@ function Canvas() {
                 });
             }
         }
-        
-        //save post
-        // if (stage) {
-        //     let dataURL = stage.toDataURL({ mimeType: 'image/png' });
-        //     let a = document.createElement('a');
-        //     a.href = dataURL;
-        //     a.download = 'drawing.png';
-        //     document.body.appendChild(a);
-        //     a.click();
-        //     document.body.removeChild(a);
-        // }
+    
 
         const saveButton = document.getElementById('saveButton');
         saveButton.addEventListener('click', saveHandler);

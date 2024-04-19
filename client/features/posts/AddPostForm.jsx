@@ -19,7 +19,7 @@ export const AddPostForm = () => {
 
     // get dummy list of users from store
     const users = useSelector(state => state.users)
-    console.log("users ===> ", users);
+    // console.log("users ===> ", users);
 
     const onTitleChanged = e => setTitle(e.target.value);
     const onContentChanged = e => setContent(e.target.value);
@@ -64,7 +64,7 @@ export const AddPostForm = () => {
         )
     });
 
-    console.log("usersOptions ===> ", usersOptions);
+    // console.log("usersOptions ===> ", usersOptions);
 
     return (
         <section>

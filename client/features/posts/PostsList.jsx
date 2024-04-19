@@ -12,7 +12,7 @@ import { ReactionButtons } from './ReactionButtons.jsx';
 export const PostsList = () => {
     // select posts from our store
     const posts = useSelector(state => {
-        console.log('Redux State ===> ', state);
+        // console.log('Redux State ===> ', state);
         return state.posts;
     });
 

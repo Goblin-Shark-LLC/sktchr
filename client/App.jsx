@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Login from './components/Authentication/Login.jsx';
-import Signup from './components/Authentication/Signup.jsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { PostsList } from './features/posts/PostsList.jsx';
-import { AddPostForm } from './features/posts/AddPostForm.jsx';
-import { SinglePostPage } from './features/posts/SinglePostPage.jsx';
-import { EditPostForm } from './features/posts/EditPostForm.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
+// import UsersList from './features/users/UsersList.jsx'
+// import UserProfile from './features/users/UserProfile.jsx';
 // import UsersList from './features/users/UsersList.jsx'
 // import UserProfile from './features/users/UserProfile.jsx';
 
@@ -33,7 +30,14 @@ function App() {
 
     useEffect(() => {
         async function fetchUser() {
-            setUserObj(await fetch('/getUser'));
+            await fetch('/getUser')
+                .then(response =>  {
+                    if(!response.ok){
+                        console.error('Network response not ok.')
+                    }
+                    return response.json()
+                })
+                .then(user =>setUserObj(user))
         }
         if(cookiePresent){
             fetchUser();
@@ -44,6 +48,7 @@ function App() {
 
     return (
     <Router>
+        <Navbar />
         <div className="App">
             <Navbar isLoggedIn={cookiePresent}/>
             <Routes>
@@ -67,7 +72,7 @@ function App() {
                 /> */}
                 {/* <Route
                     path="/users"
-                    element={<UsersList />}
+                    // element={<UsersList />}
                 />
                 <Route
                     path="/my-profile"
