@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bucket = require('./bucket.js'); 
 
 // //auth requirements
 const session  = require('express-session');
@@ -65,6 +66,7 @@ app.use((err, req, res, next) => {
   });
 
 app.listen(PORT, () => {
+    //bucket.uploadFile('goblin-shark-jaw_square_copy_720.png', path.resolve(__dirname, './goblin-shark-jaw_square_copy_720.png'));
     console.log(`Server listening on port: ${PORT}`);
 });
 

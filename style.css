@@ -1,3 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
 .bungee-shade-regular {
     font-family: "Bungee Shade", sans-serif;
     font-weight: 400;
