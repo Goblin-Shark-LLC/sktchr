@@ -19,7 +19,7 @@ const uploadFile = async (fileName, filePath) => {
         Body: fileContent
     };
     const data = await s3.upload(params).promise();
-    console.log('data', data);
+    // console.log('data', data);
     return data;
 };
 
