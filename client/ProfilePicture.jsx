@@ -1,14 +1,13 @@
+//customize your face
+//just gonna refactor a bunch of this code just so it could be used for profile pics
 import React, { useEffect, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import Konva from 'konva';
 
-
-function Canvas() {
+function Canvas2() {
     const [brushColor, setBrushColor] = useState('#000000'); //saves color to canvas
     const [lines, setLines] = useState([]); //saves line x/y position
     const [stage, setStage] = useState(null); //canvas state
-    
-
     useEffect(() => {
         function updateStageSize() {
             let container = document.getElementById('container');
@@ -90,37 +89,6 @@ function Canvas() {
     useEffect(() => {
         function saveHandler() {
 
-            // function saveHandler() {
-            //     // Check if stage exists
-            //     if (stage) {
-            //         // Get the image data URL from the stage
-            //         let dataURL = stage.toDataURL({ mimeType: 'image/png' });
-            
-            //         // Create a FormData object to send the image data
-            //         let formData = new FormData();
-            //         formData.append('image', dataURL);
-            
-            //         // Send the image data to the server using a POST request
-                    // fetch('/posts/uploads', {
-                    //     method: 'POST',
-                    //     body: formData,
-                    // })
-            //         .then(response => {
-            //             if (response.ok) {
-            //                 // Image was successfully uploaded
-            //                 console.log('Image uploaded successfully');
-            //             } else {
-            //                 // Handle error response
-            //                 console.error('Error uploading image:', response.statusText);
-            //             }
-            //         })
-            //         .catch(error => {
-            //             // Handle network error
-            //             console.error('Network error:', error);
-            //         });
-            //     }
-            // }
-            
             //save post
             if (stage) {
                 let dataURL = stage.toDataURL({ mimeType: 'image/png' });
@@ -166,4 +134,4 @@ function Canvas() {
     );
 };
 
-export default Canvas;
+export default Canvas2;

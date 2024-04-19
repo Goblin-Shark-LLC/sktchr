@@ -8,6 +8,7 @@ import { SinglePostPage } from './features/posts/SinglePostPage.jsx';
 import { EditPostForm } from './features/posts/EditPostForm.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
+import Canvas from './Canvas.jsx';
 
 function App() {
     // on app render, update userObj to null
@@ -38,12 +39,15 @@ function App() {
         async function fetchUser() {
             setUserObj(await fetch('/getUser'));
         }
-        fetchUser();
+        if(cookiePresent){
+            fetchUser();
+        }
     },[cookiePresent]);
 
     return (
     <Router>
         <Navbar />
+        {/* <Canvas /> */}
         <div className="App">
             <Routes>
                 {cookiePresent ? (
@@ -52,6 +56,7 @@ function App() {
                     path="/" 
                     element={
                         <React.Fragment>
+                            <Canvas></Canvas>
                             <AddPostForm />
                             <PostsList />
                         </React.Fragment>} 
