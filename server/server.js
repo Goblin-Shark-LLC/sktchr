@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bucket = require('./bucket.js'); 
 
 // //auth requirements
 const session  = require('express-session');
@@ -24,21 +25,19 @@ app.use(passport.session());
 
 app.use(express.json());
 
-app.use(express.static(path.resolve(__dirname, '../build')));
+// app.use(express.static(path.resolve(__dirname, '../build')));
 
 //default endpoint
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../build/bundle.js'))
+app.get('/', loginController.isLoggedIn, (req, res) => {
+        console.log('get to /')
+        res.sendFile(path.resolve(__dirname, '../build/bundle.js'))
 });
-
-// handle user signup
-// app.post('/signup', userController.createUser, (req, res) => {
-//     res.status(200).redirect('/');
-// });
 
 app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
 
+
+//NEED TO FIGURE OUT METHOD TO GET USER PROFILE INFO FROM PASSPORT TO CLIENT
 app.get('/getUser', (req, res) => {
     if(req.user){
         res.status(200).send(req.user);
@@ -46,8 +45,9 @@ app.get('/getUser', (req, res) => {
 });
 
 //Client side file (feed App) needed for insertion after isLoggedIn mw
-app.get('/feed', loginController.isLoggedIn, (req,res) => {
-    res.send(`protected page accessed. Hello ${req.user.displayName}`);
+app.get('/feed', loginController.isLoggedIn, (req, res) => {
+        // console.log(profile.id);
+        return res.redirect('/');
 });
 
 // post request test
@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
     const defaultErr = {
         log: 'Express error handler caught unknown middleware error',
         status: 500,
-        message: { err: 'An error occurred' } 
+        message: { error: `An error occurred. ERROR: ${err}`} 
       };
       const errorObj = Object.assign(defaultErr, err);
       console.log('here\'s the error:', errorObj.log);
@@ -73,6 +73,7 @@ app.use((err, req, res, next) => {
   });
 
 app.listen(PORT, () => {
+    //bucket.uploadFile('goblin-shark-jaw_square_copy_720.png', path.resolve(__dirname, './goblin-shark-jaw_square_copy_720.png'));
     console.log(`Server listening on port: ${PORT}`);
 });
 

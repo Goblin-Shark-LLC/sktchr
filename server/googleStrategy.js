@@ -10,21 +10,20 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:8080/auth/google/check",
     passReqToCallback: true
   },
-  function(request, accessToken, refreshToken, profile, done) {
-    console.log(`profile: ${profile.email}`);
-    const user = models.User.findOne({email: profile.email});
-    if(user === null){
-      models.User.create({
-          email: profile.email,
-          posts: ['somedata', 'moredata', 'evenmoredata'],
-          createdAt: Date.now(),
-          updatedAt: Date.now(),
-          }, function (err, user) {
-            console.log(`error: ${err}`);
-      });
-  }
-    return done(null, profile);
-    }
+  async function(request, accessToken, refreshToken, profile, done) {
+      const user = await models.User.findOne({email: profile.email});
+      if(user === null){
+        models.User.create({
+            email: profile.email,
+            posts: [],
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            }, function (err, user) {
+              console.log(`error: ${err}`);
+        });
+      }
+      return done(null, profile);
+      }
 ));
 
 passport.serializeUser(function(user, done) {
