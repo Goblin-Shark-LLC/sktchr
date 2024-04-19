@@ -9,6 +9,8 @@ import { EditPostForm } from './features/posts/EditPostForm.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
+import UsersList from './features/users/UsersList.jsx'
+import UserProfile from './features/users/UserProfile.jsx';
 
 function App() {
     // on app render, update userObj to null
@@ -17,9 +19,14 @@ function App() {
 
     useEffect(() => {
         let cookie = Cookies.get('isLoggedIn');
+        // console.log(`cookie: ${JSON.stringify(cookie)}`);
+        // console.log("user obj ====> ", userObj);
+
         if(cookie === 'true'){
+            // console.log('cookie true');
             setCookiePresent(true);
         } else {
+            // console.log('cookie false')
             setCookiePresent(false);
         }
     })
@@ -37,14 +44,16 @@ function App() {
         }
         if(cookiePresent){
             fetchUser();
+            // console.log("user obj ===> ", userObj);
+
         }
     },[cookiePresent]);
 
     return (
     <Router>
-        <Canvas />
         <Navbar />
         <div className="App">
+            <Navbar isLoggedIn={cookiePresent}/>
             <Routes>
                 {cookiePresent ? (
                 <>
@@ -52,25 +61,33 @@ function App() {
                     path="/" 
                     element={
                         <React.Fragment>
-                            <AddPostForm />
-                            <PostsList />
+                             <Canvas/>
+                            {/* <PostsList /> */}
                         </React.Fragment>} 
                 />
-                <Route
+                {/* <Route
                     path="/posts/:postId"
                     element={<SinglePostPage />}
                 />
                 <Route
                     path="/editPost/:postId"
                     element={<EditPostForm />}
-                /></>
+                /> */}
+                <Route
+                    path="/users"
+                    element={<UsersList />}
+                />
+                <Route
+                    path="/my-profile"
+                    element={<UserProfile />}
+            /></>
                     ) : (
                 <>
-                <Route 
+                {/* <Route 
                     path="/signup" 
                     element={
                         <Signup />
-                    } />
+                    } /> */}
                 <Route path="/" element={< Login />} />
                 </>)}
             </Routes>

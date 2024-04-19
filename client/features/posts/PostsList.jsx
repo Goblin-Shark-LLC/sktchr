@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { PostAuthor } from './PostAuthor.jsx';
@@ -15,6 +15,25 @@ export const PostsList = () => {
         // console.log('Redux State ===> ', state);
         return state.posts;
     });
+
+
+
+    // here we want to do a fetch request with specific userID and posts, createdAt/maybe updatedAt
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('/dummyFeed');
+                // how do I get the user's posts
+                const data = await response.json();
+                console.log('data ====> ', data);
+            }
+            catch (err) {
+                console.error('Error fetching data: ', err);
+            }
+        };
+        fetchPosts();
+    });
+
 
     // sort posts in reverse chronological order by datetime string
     const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));

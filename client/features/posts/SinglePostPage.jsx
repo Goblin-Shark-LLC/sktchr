@@ -18,6 +18,9 @@ export const SinglePostPage = () => {
         state.posts.find(post => post.id === postId)
     );
 
+    // we want to only be able to edit if our userID corresponds to loggedInUser
+    // fetch request necessary
+
     console.log("post ===> ", post);
 
     // error handle but not sure if necessary

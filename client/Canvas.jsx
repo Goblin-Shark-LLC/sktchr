@@ -146,7 +146,7 @@ function Canvas() {
             <style
                 dangerouslySetInnerHTML={{
                     __html:
-                        "\n      body {\n        margin: 0;\n        padding: 0;\n        overflow: hidden;\n        background-color: #f0f0f0;\n      }\n      #container {\n        border: 1px solid black;\n        width: 100vw;\n        height: 100vh;\n      }\n    "
+                        "\n      body {\n        margin: 0;\n        padding: 0;\n        overflow: hidden;\n        background-color: #f0f0f0;\n      }\n      #container {\n        border: 1px solid black;\n        width: 50vw;\n        height: 30vh;\n      }\n    "
                 }}
             />
             <div>

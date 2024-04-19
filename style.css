@@ -14,3 +14,8 @@
     font-family: "Bungee Shade";
     font-size: 40px;
   }
+
+  #container {
+    height: 500px;  
+    width: 500px;
+  }

@@ -1,10 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+
+// not sure if token needed?
 const initialState = {
     user: null,
-    token: null,
-    posts: [],
+    error: "",
+    loading: false,
+    // token: null,
+    // posts: [],
 };
+
+export const login = createAsyncThunk("auth/login", async() => {
+    try {
+        
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
 
 const authSlice = createSlice({
     name: 'auth',
@@ -22,4 +35,6 @@ const authSlice = createSlice({
             state.posts = action.payload.posts;
         }
     }
-})
+});
+
+export default authSlice.reducer;
