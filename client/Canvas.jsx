@@ -88,50 +88,46 @@ function Canvas() {
     }, [brushColor, lines]);
 
     useEffect(() => {
-        function saveHandler() {
+        // function saveHandler() {
 
-            // function saveHandler() {
-            //     // Check if stage exists
-            //     if (stage) {
-            //         // Get the image data URL from the stage
-            //         let dataURL = stage.toDataURL({ mimeType: 'image/png' });
-            
-            //         // Create a FormData object to send the image data
-            //         let formData = new FormData();
-            //         formData.append('image', dataURL);
-            
-            //         // Send the image data to the server using a POST request
-                    // fetch('/posts/uploads', {
-                    //     method: 'POST',
-                    //     body: formData,
-                    // })
-            //         .then(response => {
-            //             if (response.ok) {
-            //                 // Image was successfully uploaded
-            //                 console.log('Image uploaded successfully');
-            //             } else {
-            //                 // Handle error response
-            //                 console.error('Error uploading image:', response.statusText);
-            //             }
-            //         })
-            //         .catch(error => {
-            //             // Handle network error
-            //             console.error('Network error:', error);
-            //         });
-            //     }
-            // }
-            
-            //save post
+        function saveHandler() {
+            // Check if stage exists
             if (stage) {
+                // Get the image data URL from the stage
                 let dataURL = stage.toDataURL({ mimeType: 'image/png' });
-                let a = document.createElement('a');
-                a.href = dataURL;
-                a.download = 'drawing.png';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                console.log('dataURL:', dataURL)
+
+                // Send the image data to the server using a POST request
+                fetch('/posts/upload', {
+                    method: 'POST',
+                    body: dataURL,
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Image was successfully uploaded
+                        console.log('Image uploaded successfully');
+                    } else {
+                        // Handle error response
+                        console.error('Error uploading image:', response.statusText);
+                    }
+                })
+                .catch(error => {
+                    // Handle network error
+                    console.error('Network error:', error);
+                });
             }
         }
+        
+        //save post
+        // if (stage) {
+        //     let dataURL = stage.toDataURL({ mimeType: 'image/png' });
+        //     let a = document.createElement('a');
+        //     a.href = dataURL;
+        //     a.download = 'drawing.png';
+        //     document.body.appendChild(a);
+        //     a.click();
+        //     document.body.removeChild(a);
+        // }
 
         const saveButton = document.getElementById('saveButton');
         saveButton.addEventListener('click', saveHandler);
