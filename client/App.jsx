@@ -8,6 +8,7 @@ import { SinglePostPage } from './features/posts/SinglePostPage.jsx';
 import { EditPostForm } from './features/posts/EditPostForm.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
+import Canvas from './Canvas.jsx';
 
 function App() {
     // on app render, update userObj to null
@@ -37,6 +38,7 @@ function App() {
     useEffect(() => {
         async function fetchUser() {
             setUserObj(await fetch('/getUser'));
+            console.log("user obj ===> ", userObj);
         }
         if(cookiePresent){
             fetchUser();
@@ -54,7 +56,7 @@ function App() {
                     path="/" 
                     element={
                         <React.Fragment>
-                            <AddPostForm />
+                             <Canvas/>
                             <PostsList />
                         </React.Fragment>} 
                 />

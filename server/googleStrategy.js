@@ -11,17 +11,20 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
-      console.log(`profile: ${profile.email}`);
-      models.User.findOrCreate({
-      email: profile.email,
-      posts: ['somedata', 'moredata', 'evenmoredata'],
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      }, function (err, user) {
-        console.log(`error: ${err}`);
-      })
-      return done(null, profile);
-      }
+    console.log(`profile: ${profile.email}`);
+    const user = models.User.findOne({email: profile.email});
+    if(user === null){
+      models.User.create({
+          email: profile.email,
+          posts: ['somedata', 'moredata', 'evenmoredata'],
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+          }, function (err, user) {
+            console.log(`error: ${err}`);
+      });
+  }
+    return done(null, profile);
+    }
 ));
 
 passport.serializeUser(function(user, done) {
