@@ -13,10 +13,7 @@ function App() {
     // on app render, update userObj to null
     const [cookiePresent, setCookiePresent] = useState(false);
     const [userObj, setUserObj] = useState(null);
-    // will create routes to mainfeed and userprofile (maybe based on id or username)
-    // TODO: create conditionals based on user logged in or not
-    // I think this could maybe be stored in state, renders can be conditional on that?
-    // routing will be dependent on this
+
     useEffect(() => {
         let cookie = Cookies.get('isLoggedIn');
         console.log(`cookie: ${JSON.stringify(cookie)}`);

@@ -35,6 +35,8 @@ app.get('/', loginController.isLoggedIn, (req, res) => {
 app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
 
+
+//NEED TO FIGURE OUT METHOD TO GET USER PROFILE INFO FROM PASSPORT TO CLIENT
 app.get('/getUser', (req, res) => {
     if(req.user){
         res.status(200).send(req.user);
