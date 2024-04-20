@@ -7,5 +7,9 @@ router.post('/upload', postsConstroller.upload, postsConstroller.addToDb, (req, 
     return res.sendStatus(200);
 });
 
+router.get('/getPosts', postsConstroller.getPosts, (req, res) => {
+    res.status(200).send(res.locals.postsArr);
+})
+
 
 module.exports = router;
