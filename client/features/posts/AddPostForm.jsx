@@ -12,13 +12,14 @@ export const AddPostForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     // useState hook for dummy user input (eventually will be linked to whoever is logged in)
+    // we need a fetch request for userID to correspond to logged in user
     const [userId, setUserId] = useState('');
 
     const dispatch = useDispatch();
 
     // get dummy list of users from store
     const users = useSelector(state => state.users)
-    console.log("users ===> ", users);
+    // console.log("users ===> ", users);
 
     const onTitleChanged = e => setTitle(e.target.value);
     const onContentChanged = e => setContent(e.target.value);
@@ -35,6 +36,22 @@ export const AddPostForm = () => {
         }
     }
 
+
+    // post request
+    // we need from postSchema: url (img)
+    const addPost = async () => {
+        console.log("form data ===> ", { title, content });
+        fetch('/addPost', {
+            method: 'POST',
+            body: JSON.stringify(title),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("we are in addPost, data ===> ", data);
+        })
+        .catch(err => console.log('addPost fetch request error ===>', err))
+    };
+
     // adding functionality where we can only click Save if all input fields have text
     const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
 
@@ -47,7 +64,7 @@ export const AddPostForm = () => {
         )
     });
 
-    console.log("usersOptions ===> ", usersOptions);
+    // console.log("usersOptions ===> ", usersOptions);
 
     return (
         <section>
@@ -74,6 +91,7 @@ export const AddPostForm = () => {
                     onChange={onContentChanged}
                 />
                 <button type="button" onClick={onSavePostClicked} disabled={!canSave}>Save Post</button>
+                <button type="button" onClick={addPost}>Test Post</button>
             </form>
         </section>
     )

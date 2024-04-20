@@ -13,33 +13,16 @@ const Login = (props) => {
         navigate('/home');
     }
 
-    // const handleLogin = () => {
-    //     fetch()
-    // }
-    // function isLoggedIn() {
-    //     if(props.cookiePresent){
-    //         return (
-    //             <div>
-    //                 You are Logged in!
-    //             </div>
-    //         )
-    //     }
-    //     else{
-    //         return (
-    //             <div>Login</div>
-    //         )
-    //     }
-    // }
     return (
         <div className="form-container">
-            <h2>Login</h2>
-            <form>
-                <input id="username" type="text" placeholder="Username" />
-                <input id="password" type="password" placeholder="Password" />
-                <button type="button" onClick={navigateToHome}>Login</button>
-            </form>
-            <Link to="http://localhost:3000/auth/google">Authenticate with Google</Link>
-            <p>Don't have an account? <button onClick={navigateToSignup}>Sign Up</button></p>
+            {/* <h2 className="form-header">Login</h2> */}
+            {/* <p className="form-subtitle">Sign in with:</p> */}
+            <div className="social-auth">
+                <Link to="http://localhost:3000/auth/google" className="auth-link google">Authenticate with Google</Link>
+                {/* Add more social authentication links if needed */}
+            </div>
+            {/* Optional: Add a link to navigate to the signup page */}
+            {/* <p>Don't have an account? <button onClick={navigateToSignup}>Sign Up</button></p> */}
         </div>
     )
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { PostAuthor } from './PostAuthor.jsx';
@@ -12,9 +12,15 @@ import { ReactionButtons } from './ReactionButtons.jsx';
 export const PostsList = () => {
     // select posts from our store
     const posts = useSelector(state => {
-        console.log('Redux State ===> ', state);
+        // console.log('Redux State ===> ', state);
         return state.posts;
     });
+
+
+
+    // here we want to do a fetch request with specific userID and posts, createdAt/maybe updatedAt
+    // need to get data from db
+
 
     // sort posts in reverse chronological order by datetime string
     const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
