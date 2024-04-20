@@ -15,6 +15,7 @@ mongoose.connect(uri)
   });
 
 const userSchema = new Schema({
+  name: String,
   email: { type: String, unique: true },
   posts: Array,
   createdAt: { type: Date, default: Date.now },

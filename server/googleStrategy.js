@@ -15,7 +15,7 @@ passport.use(new GoogleStrategy({
         console.log("profile ====> ", profile);
         if(user === null){
             await models.User.create({
-              // name: profile['given_name'],
+              name: profile['given_name'],
                 email: profile.email,
                 posts: [],
                 createdAt: Date.now(),

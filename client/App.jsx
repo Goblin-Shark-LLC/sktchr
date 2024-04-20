@@ -5,13 +5,14 @@ import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
 import { PostsList } from './features/posts/PostsList.jsx';
-// import UsersList from './features/users/UsersList.jsx'
+import UserList from './features/users/usersList.jsx'
 // import UserProfile from './features/users/UserProfile.jsx';
 
 function App() {
     // on app render, update userObj to null
     const [cookiePresent, setCookiePresent] = useState(false);
     const [userObj, setUserObj] = useState(null);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         let cookie = Cookies.get('isLoggedIn');
@@ -26,6 +27,14 @@ function App() {
             setCookiePresent(false);
         }
     })
+
+    // useEffect(() => {
+    //     async () => {
+    //             await fetch('/posts/getPosts')
+    //     .then(data => data.json())
+    //     .then(json =>  console.log(json))
+    // //     }
+    // })
 
     useEffect(() => {
         async function fetchUser() {
@@ -58,7 +67,7 @@ function App() {
                     element={
                         <div className="mainContent">
                              <Canvas/>
-                            <PostsList />
+                            <PostsList posts={posts} setPosts={setPosts}/>
                         </div>} 
                 />
                 {/* <Route
@@ -69,14 +78,15 @@ function App() {
                     path="/editPost/:postId"
                     element={<EditPostForm />}
                 /> */}
-                {/* <Route
-                    path="/users"
-                    // element={<UsersList />}
-                />
                 <Route
+                    path="/users"
+                    element={<UserList />}
+                />
+                {/* <Route
                     path="/my-profile"
                     element={<UserProfile />}
-            />*/}</>
+             /> */}
+             </>
                     ) : (
                 <>
                 {/* <Route 
