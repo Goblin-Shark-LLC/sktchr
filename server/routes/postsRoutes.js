@@ -1,20 +1,11 @@
 const express = require('express');
-const fs = require('fs');
+const postsConstroller = require('../postsController/posts.js');
 
 const router = express.Router();
 
-router.post('/upload', (req, res, next) => {
-    try{
-    
-
-    } catch (err) {
-        console.log(`Error occurred in upload middleware: ${err}`);
-        next({
-            message: 'Error occurred in upload middleware.',
-            status: 500,
-            error: err
-        });
-    }
+router.post('/upload', postsConstroller.upload, postsConstroller.addToDb, (req, res) => {
+    return res.sendStatus(200);
 });
+
 
 module.exports = router;

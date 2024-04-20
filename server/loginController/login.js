@@ -1,7 +1,6 @@
 const loginController = {};
 
 loginController.isLoggedIn = (req, res, next) => {
-    // console.log("google auth user ====> ", req.user);
     try{
         if(req.user){
             res.cookie('isLoggedIn', true);
@@ -31,5 +30,18 @@ loginController.logOut = (req, res, next) => {
     })
     return next();
 };
+
+loginController.saveUser = (req, res, next) => {
+    try {
+        res.cookie('user', req.user);
+        return next();
+    } catch (error) {
+        next({
+            message: 'An error occurred in saveUser middleware',
+            status: 500,
+            error: error
+        });
+    }
+}
 
 module.exports =  loginController;

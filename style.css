@@ -2,15 +2,268 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --redux-color: #70798C;
+}
 
+/* FONTS */
 .bungee-shade-regular {
     font-family: "Bungee Shade", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
 
+  .pacifico-regular {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
   
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* BASIC */  
   h1 {
     font-family: "Bungee Shade";
     font-size: 40px;
+    margin: 10px;
+    margin-top:20px;
+    margin-right: auto;
+
   }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F5F1ED;
+    font-family: 'Poppins';
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* NAVBAR */
+  nav {
+    display: flex;
+    padding: 0;
+    background: var(--redux-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+/* font color for h1 */
+nav section h1 {
+  color: #252323;
+}
+
+/* links */
+nav a,
+nav a:active {
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.25rem 1.5rem;
+  border-radius: 4px;
+  color: #F5F1ED !important;
+}
+
+/* links hover */
+nav a:hover {
+  color: #F5F1ED;
+  background: #252323;
+}
+
+/* aligning links to the right */
+.navContent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* adjusts space between links */
+/* .navLinks a {
+  margin-left: 10px;
+} */
+
+/* .navLinks a .badge {
+  margin-left: 5px;
+  position: relative;
+  top: -3px;
+} */
+
+/* .badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #212529;
+  background-color: #f8f9fa;
+} */
+
+/* I'm not sure what is going on here but it breaks when I get rid of closing comment */
+/* .navLinks a:last-child, */
+.navLinks button:last-child {
+  margin-left: auto;
+} */
+
+
+
+/* section {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+  /* padding-top: 100px;
+} */
+
+section h1 {
+  font-size: 3rem;
+}
+
+/* MAIN FEED */
+
+/* POSTS */
+
+.post h2 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+
+.post-excerpt {
+  padding: 0.25rem 0.25rem;
+  border: 1px solid rgb(177, 174, 174);
+  border-radius: 7px;
+}
+
+.posts-list .post-excerpt + .post-excerpt {
+  margin-top: 0.5rem;
+}
+
+.posts-container.disabled {
+  opacity: 0.5;
+}
+
+.post-excerpt h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+p.post-content {
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-block;
+  background: #70798C;
+  text-decoration: none;
+  color: #F5F1ED;
+  border-radius: 4px;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+}
+
+button:disabled,
+button:disabled:hover {
+  opacity: 0.5;
+}
+
+button.reaction-button {
+  border: 1px solid #e0e3e9;
+  padding: 5px 10px;
+  margin: 5px 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+
+/* CONTENT - CANVAS + POSTS CENTERED */
+.mainContent {
+  max-width: 800px;
+  margin: 150px auto 0;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* CANVAS */
+
+.canvasContainer {
+  border: 1px solid black;
+  width: 800px;
+  height: 30vh;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  /* position: relative;
+  z-index: 1; */
+}
+
+
+/* LOGIN PAGE */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #F5F1ED;
+  /* padding: 20px; */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  margin-bottom: 10px; /* Reduce margin-bottom */
+}
+
+.form-subtitle {
+  margin-bottom: 20px; /* Add margin-bottom for spacing */
+}
+
+.social-auth {
+  display: flex;
+  flex-direction: column; /* Arrange social auth links in a column */
+}
+
+.auth-link {
+  /* display: inline-block; */
+  padding: 10px 20px;
+  /* margin-bottom: 10px; */
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+}
+
+.auth-link.google {
+  background-color: var(--redux-color);
+}
+
+
