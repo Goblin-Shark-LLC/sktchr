@@ -152,7 +152,7 @@ function Canvas() {
                     <option value="#ffff00">Yellow</option>
                 </select>
                 <button id="undoButton">Undo</button>
-                <button id="saveButton">Save</button>
+                <button id="saveButton">Post</button>
             </div>
             <div id="container" className="canvasContainer" />
 

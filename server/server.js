@@ -52,16 +52,16 @@ app.get('/feed', loginController.isLoggedIn, loginController.saveUser,
 });
 
 // fetch users test
-// app.get('/api/users', async (req, res) => {
-//     try {
-//       // Fetch users from the database
-//       const users = await User.find();
-//       res.json(users);
-//     } catch (error) {
-//       console.error('Error fetching users:', error);
-//       res.status(500).json({ error: 'Internal server error' });
-//     }
-//   });
+app.get('/api/users', async (req, res) => {
+    try {
+      // Fetch users from the database
+      const users = await User.find();
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 
 
 //404 error handling

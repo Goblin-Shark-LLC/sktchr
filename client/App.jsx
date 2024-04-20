@@ -5,7 +5,7 @@ import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
 import { PostsList } from './features/posts/PostsList.jsx';
-// import UsersList from './features/users/UsersList.jsx'
+import UserList from './features/users/usersList.jsx'
 // import UserProfile from './features/users/UserProfile.jsx';
 
 function App() {
@@ -69,14 +69,15 @@ function App() {
                     path="/editPost/:postId"
                     element={<EditPostForm />}
                 /> */}
-                {/* <Route
-                    path="/users"
-                    // element={<UsersList />}
-                />
                 <Route
+                    path="/users"
+                    element={<UserList />}
+                />
+                {/* <Route
                     path="/my-profile"
                     element={<UserProfile />}
-            />*/}</>
+             /> */}
+             </>
                     ) : (
                 <>
                 {/* <Route 
