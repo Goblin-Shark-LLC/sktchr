@@ -7,6 +7,7 @@ function Canvas() {
     const [brushColor, setBrushColor] = useState('#000000'); //saves color to canvas
     const [lines, setLines] = useState([]); //saves line x/y position
     const [stage, setStage] = useState(null); //canvas state
+    const [colorPickerVisible, setColorPickerVisible] = useState(false); 
     
 
     useEffect(() => {
@@ -136,6 +137,19 @@ function Canvas() {
             saveButton.removeEventListener('click', saveHandler);
         };
     }, [stage]);
+
+    const clearCanvas = () => {
+        setLines([]); // Clear lines drawn on the canvas
+        if (stage) {
+            stage.clear(); // Clear everything on the stage
+            stage.batchDraw(); // Batch draw to update the stage
+        }
+    };
+
+    const toggleColorPicker = () => {
+        setColorPickerVisible((prevVisible) => !prevVisible); // Toggle color picker visibility
+    };
+
     
     return (
         <>
@@ -148,18 +162,27 @@ function Canvas() {
                 }}
             />
             <div>
-            Tool:
+                Tool:
                 <select id="tool">
                     <option value="brush">Brush</option>
                     <option value="eraser">Eraser</option>
                 </select>
-                Color: <HexColorPicker color={brushColor} onChange={setBrushColor} />
+                Color: 
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+                    <button onClick={toggleColorPicker}>Pallete</button>
+                    {colorPickerVisible && (
+                        <div style={{ position: 'absolute', zIndex: 1 }}>
+                            <HexColorPicker color={brushColor} onChange={setBrushColor} />
+                        </div>
+                    )}
+                </div>
                 <button id="undoButton">Undo</button>
+                <button onClick={clearCanvas}>Clear Canvas</button>
                 <button id="saveButton">Save</button>
             </div>
             <div id="container" />
         </>
     );
-};
+}
 
 export default Canvas;
