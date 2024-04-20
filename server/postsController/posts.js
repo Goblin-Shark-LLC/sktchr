@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const bucket = require('../bucket.js');
-const { User } = require('../models.js');
+const { User, Post } = require('../models.js');
 
 const postsConstroller = {};
 
@@ -14,6 +14,8 @@ postsConstroller.upload = async (req, res, next) => {
         res.locals.user = await User.findOne({email: req.cookies['user'].email});
         const nameGen = res.locals.user.posts.length;
         const imagePath = path.join(__dirname, '..', 'imgCache', `image${nameGen}.txt`);
+
+        // console.log(res.locals.user);
 
         const writeFilePromise = util.promisify(fs.writeFile);
         await writeFilePromise(imagePath, req.body.imgData, (err) => {
@@ -41,7 +43,12 @@ postsConstroller.addToDb = async (req, res, next) => {
         const filter = {email: req.cookies['user'].email};
         const updatedPosts = {posts: [...res.locals.user.posts]};
         updatedPosts.posts.push(res.locals.img.Location)
+
         console.log('newUserObj', await User.findOneAndUpdate(filter, updatedPosts));
+        console.log('newPost:', await Post.create({
+            createdBy: res.locals.user,
+            url: res.locals.img.Location
+        }))
         return next();
     } catch (error) {
         return next({
@@ -51,5 +58,18 @@ postsConstroller.addToDb = async (req, res, next) => {
         })
     };
 };
+
+postsConstroller.getPosts = async (req, res, next) => {
+    try{
+        res.locals.postsArr = await Post.find()
+        next();
+    } catch(error) {
+        next({
+            message: 'An error occurred in getPosts middleware.',
+            status: 500,
+            error: error
+        })
+    }
+}
 
 module.exports = postsConstroller;

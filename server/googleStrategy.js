@@ -18,13 +18,16 @@ passport.use(new GoogleStrategy({
                 posts: [],
                 createdAt: Date.now(),
                 updatedAt: Date.now(),
-                }, function (err, newUser) {
-                if(err){
-                    console.error(`error creating user: ${err}`);
-                    return done(err);
                 }
-                return done(null, newUser, { profile: profile });
-            });
+            //     , function (err, newUser) {
+            //     if(err){
+            //         console.error(`error creating user: ${err}`);
+            //         return done(err);
+            //     }
+            //     return done(null, newUser, { profile: profile }
+            //         );
+            // }
+            );
         } else {
             return done(null, user, { profile: profile });
         }
