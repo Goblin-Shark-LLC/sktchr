@@ -48,6 +48,8 @@ function App() {
     return (
     <Router>
         <Navbar />
+        {/* <Canvas /> */}
+        <Navbar />
         <div className="App">
             <Navbar isLoggedIn={cookiePresent}/>
             <Routes>
