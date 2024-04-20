@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Navbar } from './components/Navbar.jsx';
 import Cookies from 'js-cookie';
 import Canvas from './Canvas.jsx';
+import { PostsList } from './features/posts/PostsList.jsx';
 // import UsersList from './features/users/UsersList.jsx'
 // import UserProfile from './features/users/UserProfile.jsx';
 
@@ -55,10 +56,10 @@ function App() {
                 <Route 
                     path="/" 
                     element={
-                        <React.Fragment>
+                        <div className="mainContent">
                              <Canvas/>
-                            {/* <PostsList /> */}
-                        </React.Fragment>} 
+                            <PostsList />
+                        </div>} 
                 />
                 {/* <Route
                     path="/posts/:postId"
@@ -68,14 +69,14 @@ function App() {
                     path="/editPost/:postId"
                     element={<EditPostForm />}
                 /> */}
-                <Route
+                {/* <Route
                     path="/users"
                     // element={<UsersList />}
                 />
                 <Route
                     path="/my-profile"
-                    // element={<UserProfile />}
-            /></>
+                    element={<UserProfile />}
+            />*/}</>
                     ) : (
                 <>
                 {/* <Route 

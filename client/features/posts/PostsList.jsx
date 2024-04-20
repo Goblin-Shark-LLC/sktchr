@@ -19,20 +19,7 @@ export const PostsList = () => {
 
 
     // here we want to do a fetch request with specific userID and posts, createdAt/maybe updatedAt
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await fetch('/dummyFeed');
-                // how do I get the user's posts
-                const data = await response.json();
-                console.log('data ====> ', data);
-            }
-            catch (err) {
-                console.error('Error fetching data: ', err);
-            }
-        };
-        fetchPosts();
-    });
+    // need to get data from db
 
 
     // sort posts in reverse chronological order by datetime string

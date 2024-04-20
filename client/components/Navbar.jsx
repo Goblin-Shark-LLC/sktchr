@@ -31,7 +31,7 @@ export const Navbar = ({ isLoggedIn }) => {
     // console.log("Nav is logged in? ===> ", isLoggedIn);
     return (
         <nav>
-            <section>
+            <section className="navSection">
                 <h1>sktchr</h1>
                 <div className="navContent">
                 { isLoggedIn ? (
@@ -40,7 +40,7 @@ export const Navbar = ({ isLoggedIn }) => {
                         <Link to="/"> Home </Link>
                         <Link to ='/my-profile'>My profile</Link>
                         <Link to ='/users'>Users</Link>
-                        <button onClick={handleLogout}>Log Out</button>
+                        <Link to='/' onClick={handleLogout}>Log Out</Link>
                     </div>
                     ) : (<></>)}
                 </div>

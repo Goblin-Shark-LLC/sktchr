@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bucket = require('./bucket.js'); 
 const cookieParser = require('cookie-parser');
+const { User } = require('./models.js')
 
 // //auth requirements
 const session  = require('express-session');
@@ -50,12 +51,18 @@ app.get('/feed', loginController.isLoggedIn, loginController.saveUser,
         return res.redirect('/');
 });
 
-// post request test
-// app.post('/addPost', (req, res) => {
-//     console.log("we are in add post server side, req ==>", req);
-//     console.log("current user ===> ", req.user);
-//     res.status(200).send();
-// });
+// fetch users test
+// app.get('/api/users', async (req, res) => {
+//     try {
+//       // Fetch users from the database
+//       const users = await User.find();
+//       res.json(users);
+//     } catch (error) {
+//       console.error('Error fetching users:', error);
+//       res.status(500).json({ error: 'Internal server error' });
+//     }
+//   });
+
 
 //404 error handling
 app.use('*', (req, res) => res.status(404).send({message:'404ed'}));
