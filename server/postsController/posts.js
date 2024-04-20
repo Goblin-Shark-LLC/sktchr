@@ -47,7 +47,7 @@ postsConstroller.addToDb = async (req, res, next) => {
         console.log('newUserObj', await User.findOneAndUpdate(filter, updatedPosts));
         console.log('newPost:', await Post.create({
             createdBy: res.locals.user,
-            url: res.locals.img.Location
+            url: req.body.imgData
         }))
         return next();
     } catch (error) {

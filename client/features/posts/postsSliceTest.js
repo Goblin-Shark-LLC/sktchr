@@ -15,14 +15,14 @@ const initialState = {
     error: null
 }
 
-export const fetchPosts =  createAsyncThunk(
-    'posts/getPosts',
-    async () => {
-        const response = await axios.get('/posts/getPosts');
-        console.log("res in postsSlice test ===> ", response);
-    }
-
-)
+// export const fetchPosts =  createAsyncThunk(
+//     'posts/getPosts',
+//     async () => {
+//         const response = await axios.get('/posts/getPosts');
+//         console.log("res in postsSlice test ===> ", response.data);
+//         return response.data;
+//     }
+// )
 
 
 
@@ -36,7 +36,7 @@ const postsSliceTest = createSlice({
             reducer(state, action) {
                 state.posts.push(action.payload);
             },
-            prepare(title, content, userId) {
+            prepare( content, userId) {
                 return {
                     payload: {
                         // id: nanoid(),

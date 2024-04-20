@@ -12,6 +12,7 @@ function App() {
     // on app render, update userObj to null
     const [cookiePresent, setCookiePresent] = useState(false);
     const [userObj, setUserObj] = useState(null);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         let cookie = Cookies.get('isLoggedIn');
@@ -26,6 +27,14 @@ function App() {
             setCookiePresent(false);
         }
     })
+
+    // useEffect(() => {
+    //     async () => {
+    //             await fetch('/posts/getPosts')
+    //     .then(data => data.json())
+    //     .then(json =>  console.log(json))
+    // //     }
+    // })
 
     useEffect(() => {
         async function fetchUser() {
@@ -58,7 +67,7 @@ function App() {
                     element={
                         <div className="mainContent">
                              <Canvas/>
-                            <PostsList />
+                            <PostsList posts={posts} setPosts={setPosts}/>
                         </div>} 
                 />
                 {/* <Route
