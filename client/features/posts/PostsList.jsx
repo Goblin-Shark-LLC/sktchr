@@ -71,7 +71,7 @@ export const PostsList = (props) => {
 
 
     // sort posts in reverse chronological order by datetime string
-    // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+    const orderedPosts = props.posts.slice().sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
     // loop through our array of posts
     // & show each one
@@ -82,14 +82,14 @@ export const PostsList = (props) => {
 
     // const TEST = fetchPosts();
     
-    const renderedPosts = props.posts.map(post => {
+    const renderedPosts = orderedPosts.map(post => {
         if(post){
             return(
                 <article className="post-excerpt">
-                    <h3>{post.title}</h3>
+                    {/* <h3>{post.title}</h3> */}
                     <div>
-                        {/* <PostAuthor userId={post.createdBy} />*/}
-                        {/* <TimeAgo timestamp={post.createdAt} /> */}
+                        <PostAuthor userId={post.createdBy} />
+                        <TimeAgo timestamp={post.createdAt} />
                     </div>
                     <img src={post.url}></img>
                     {/* <p className="post-content">{post.url}</p> */}

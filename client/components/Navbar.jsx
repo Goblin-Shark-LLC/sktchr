@@ -38,8 +38,8 @@ export const Navbar = ({ isLoggedIn }) => {
                     <div className="navLinks">
                         
                         <Link to="/"> Home </Link>
-                        <Link to ='/my-profile'>My profile</Link>
-                        <Link to ='/users'>Users</Link>
+                        {/* <Link to ='/my-profile'>My profile</Link>
+                        <Link to ='/users'>Users</Link> */}
                         <Link to='/' onClick={handleLogout}>Log Out</Link>
                     </div>
                     ) : (<></>)}

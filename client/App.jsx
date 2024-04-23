@@ -54,6 +54,16 @@ function App() {
         }
     },[cookiePresent]);
 
+    // // Async thunk to fetch users
+    // export const fetchUsers = createAsyncThunk(
+    // 'users/fetchUsers',
+    // async () => {
+    //     const response = await axios.get('/api/users');
+    //     console.log("res in usersSlice ===> ", response);
+    //     return response.data;
+    // }
+    // );
+
     return (
     <Router>
         <Navbar />
@@ -78,10 +88,10 @@ function App() {
                     path="/editPost/:postId"
                     element={<EditPostForm />}
                 /> */}
-                <Route
+                {/* <Route
                     path="/users"
                     element={<UserList />}
-                />
+                /> */}
                 {/* <Route
                     path="/my-profile"
                     element={<UserProfile />}

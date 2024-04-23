@@ -31,36 +31,31 @@ export const fetchUsers = createAsyncThunk(
     }
 );
 
-const initialState = {
-    users: [],
-    currentUser: null,
-    loading: false,
-    error: null
-};
+const initialState = [];
 
 const usersSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {
-        setCurrentUser(state, action) {
-            state.currentUser = action.payload;
-        }
-    },
-    extraReducers: builder => {
-        builder
-            .addCase(fetchUsers.pending, state => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(fetchUsers.fulfilled, (state, action) => {
-                state.loading = false;
-                state.users = action.payload;
-            })
-            .addCase(fetchUsers.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            });
-    }
+    // reducers: {
+    //     setCurrentUser(state, action) {
+    //         state.currentUser = action.payload;
+    //     }
+    // },
+    // extraReducers: builder => {
+    //     builder
+    //         .addCase(fetchUsers.pending, state => {
+    //             state.loading = true;
+    //             state.error = null;
+    //         })
+    //         .addCase(fetchUsers.fulfilled, (state, action) => {
+    //             state.loading = false;
+    //             state.users = action.payload;
+    //         })
+    //         .addCase(fetchUsers.rejected, (state, action) => {
+    //             state.loading = false;
+    //             state.error = action.error.message;
+    //         });
+    // }
 });
 
 export const { setCurrentUser } = usersSlice.actions;
